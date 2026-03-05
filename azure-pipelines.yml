@@ -5,7 +5,8 @@ trigger:
       - main   # Run pipeline when code is pushed to main
 
 pool:
-  vmImage: 'ubuntu-latest'   # Use Linux agent for Angular builds
+  # vmImage: 'ubuntu-latest'   # Use Linux agent for Angular builds
+  name: tinyweb-apppool
 
 
 variables:
