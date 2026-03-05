@@ -45,6 +45,6 @@ stages:
         steps:
           - task: AzureWebApp@1
             inputs:
-              azureSubscription: '<Your-Service-Connection-Name>'
+              azureSubscription: 'AzureSubscription-Prod'
               appName: 'tinyweb-app'
               package: '$(Pipeline.Workspace)/drop'
