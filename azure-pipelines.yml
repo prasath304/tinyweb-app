@@ -44,7 +44,11 @@ stages:
       - job: DeployAngular
         steps:
           - task: AzureWebApp@1
+          
             inputs:
               azureSubscription: 'AzureSubscription-Prod'
               appName: 'tinyweb-app'
               package: '$(Pipeline.Workspace)/drop'
+
+            pool:
+              name: Default   # or your custom pool name
