@@ -6,7 +6,7 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'   # Use Linux agent for Angular builds
-  name: tinyweb-apppool 
+
 
 variables:
   buildConfiguration: 'production'
