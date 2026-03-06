@@ -1,4 +1,5 @@
 # azure-pipelines.yml
+
 trigger:
   branches:
     include:
@@ -18,6 +19,7 @@ stages:
     jobs:
       - job: BuildAngular
         steps:
+        
           - task: NodeTool@0
             inputs:
               versionSpec: '18.x'   # Install Node.js
@@ -30,6 +32,7 @@ stages:
             displayName: 'Install dependencies'
 
           - script: npm run build-prod --configuration production
+            workingDirectory: tinyweb-app
             displayName: 'Build Angular app (production)'
           - task: PublishBuildArtifacts@1
             inputs:
