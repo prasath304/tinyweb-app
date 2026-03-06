@@ -13,19 +13,7 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
-      "architect": {
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "browserTarget": "tinyweb-app:build:production",
-            "routes": [
-              "/",
-              "/dashboard",
-              "/profile",
-              "/about"
-            ]
-          }
-        },
+      "architect": {       
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
