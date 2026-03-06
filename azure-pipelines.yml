@@ -41,6 +41,11 @@ stages:
               PathtoPublish: 'tinyweb-app/dist/tinyweb-app'
               ArtifactName: 'drop'
               publishLocation: 'Container'
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'drop'
+              targetPath: '$(Pipeline.Workspace)/drop'
+
 
   - stage: Deploy
     displayName: 'Deploy to Azure Web App'
