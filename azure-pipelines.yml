@@ -41,11 +41,7 @@ stages:
               PathtoPublish: 'tinyweb-app/dist/tinyweb-app'
               ArtifactName: 'drop'
               publishLocation: 'Container'
-          - task: DownloadPipelineArtifact@2
-            inputs:
-              artifactName: 'drop'
-              targetPath: '$(Pipeline.Workspace)/drop'
-
+       
 
   - stage: Deploy
     displayName: 'Deploy to Azure Web App'
@@ -54,8 +50,14 @@ stages:
     jobs:
       - job: DeployAngular
         steps:
-          - task: AzureWebApp@1
-            inputs:
+        # Download the artifact published in Build stage
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            artifactName: 'drop'
+            targetPath: '$(Pipeline.Workspace)/drop'
+
+        - task: AzureWebApp@1
+          inputs:
               azureSubscription: 'AzureSubscription-Prod'
               appName: 'tiny-webApp'
               appType: 'webApp'
