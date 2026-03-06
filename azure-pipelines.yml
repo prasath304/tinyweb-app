@@ -33,7 +33,7 @@ stages:
             workingDirectory: tinyweb-app
             displayName: 'Install dependencies'
 
-          - script: npm run build-prod --configuration production
+          - script: npm run build-prod
             workingDirectory: tinyweb-app
             displayName: 'Build Angular app (production)'
           - task: PublishBuildArtifacts@1
