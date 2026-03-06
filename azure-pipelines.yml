@@ -38,7 +38,7 @@ stages:
             displayName: 'Build Angular app (production)'
           - task: PublishBuildArtifacts@1
             inputs:
-              PathtoPublish: 'dist/tinyweb-app'
+              PathtoPublish: 'tinyweb-app/dist/tinyweb-app'
               ArtifactName: 'drop'
               publishLocation: 'Container'
 
