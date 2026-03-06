@@ -37,7 +37,7 @@ stages:
             workingDirectory: tinyweb-app
             displayName: 'Build Angular app (production)'
            # Prerender routes (Step 2)
-          - script: npm ng run tinyweb-app:prerender
+          - script: npm run tinyweb-app:prerender
             workingDirectory: tinyweb-app
             displayName: 'Prerender Angular routes'
 
