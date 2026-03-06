@@ -29,7 +29,7 @@ stages:
           - script: npm install
             displayName: 'Install dependencies'
 
-          - script: npm run build-prod
+          - script: npm run build
             displayName: 'Build Angular app (production)'
 
           - task: PublishBuildArtifacts@1
