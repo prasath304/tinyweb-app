@@ -11,7 +11,7 @@ pool:
 
 
 variables:
-  node_version: '20.x'
+  node_version: '22.x'
   buildConfiguration: 'production'
   angularProject: 'my-app'   # Replace with your Angular project name
 
