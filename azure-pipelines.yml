@@ -31,7 +31,7 @@ stages:
           - script: npm install
             displayName: 'Install dependencies'
 
-          - script: npm run build-prod --configuration production
+          - script: npx ng build-prod --configuration production
             workingDirectory: tinyweb-app
             displayName: 'Build Angular app (production)'
           - task: PublishBuildArtifacts@1
