@@ -36,9 +36,14 @@ stages:
           - script: npm run build-prod
             workingDirectory: tinyweb-app
             displayName: 'Build Angular app (production)'
+           # Prerender routes (Step 2)
+          - script: npm run prerender
+            workingDirectory: tinyweb-app
+            displayName: 'Prerender Angular routes'
+
           - task: PublishBuildArtifacts@1
             inputs:
-              PathtoPublish: 'tinyweb-app/dist/tinyweb-app'
+              PathtoPublish: 'tinyweb-app/dist/tinyweb-app/browser'
               ArtifactName: 'drop'
               publishLocation: 'Container'
        
