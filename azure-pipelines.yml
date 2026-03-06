@@ -26,9 +26,11 @@ stages:
             displayName: 'Install Node.js'
 
           - script: npm install -g @angular/cli
+            workingDirectory: tinyweb-app
             displayName: 'Install Angular CLI'
 
           - script: npm install
+            workingDirectory: tinyweb-app
             displayName: 'Install dependencies'
 
           - script: npx ng build-prod --configuration production
