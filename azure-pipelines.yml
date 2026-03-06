@@ -64,7 +64,7 @@ stages:
         - task: AzureWebApp@1
           inputs:
               azureSubscription: 'AzureSubscription-Prod'
-              appName: 'tiny-webApp'
+              appName: 'tiny-angular-app'
               appType: 'webApp'
               package: '$(Pipeline.Workspace)/drop'
 
