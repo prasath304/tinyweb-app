@@ -29,7 +29,7 @@ stages:
           - script: npm install
             displayName: 'Install dependencies'
 
-          - script: npx ng build --configuration production
+          - script: npm run build-prod --configuration production
             displayName: 'Build Angular app (production)'
           - task: PublishBuildArtifacts@1
             inputs:
@@ -45,7 +45,6 @@ stages:
       - job: DeployAngular
         steps:
           - task: AzureWebApp@1
-
             inputs:
               azureSubscription: 'AzureSubscription-Prod'
               appName: 'tinyweb-app'
