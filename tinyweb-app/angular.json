@@ -14,6 +14,18 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "browserTarget": "tinyweb-app:build:production",
+            "routes": [
+              "/",
+              "/dashboard",
+              "/profile",
+              "/about"
+            ]
+          }
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
@@ -90,19 +102,19 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-  "src/favicon.ico",
-  "src/assets",
-  "src/routes.json"
-],
-  "styles": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/routes.json"
+            ],
+            "styles": [
               "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
-    }   
-  }, 
+    }
+  },
   "cli": {
     "analytics": "b40e4327-2b62-4d57-a41e-573c80ce723e"
   }
