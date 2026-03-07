@@ -46,12 +46,7 @@ stages:
               PathtoPublish: 'tinyweb-app/dist/tinyweb-app/browser'
               ArtifactName: 'drop'
               publishLocation: 'Container'
-          - task: CopyFiles@2
-            inputs:
-              SourceFolder: 'dist/tinyweb-app/server'
-              Contents: 'server.mjs'
-              TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot'
-
+              
   - stage: Deploy
     displayName: 'Deploy to Azure Web App'
     dependsOn: Build
