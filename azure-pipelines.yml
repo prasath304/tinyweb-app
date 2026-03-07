@@ -35,16 +35,14 @@ stages:
         versionSpec: '20.x'
       displayName: 'Install Node.js'
 
-    - script: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-      displayName: 'npm install, build and test'
+    - script: npm install && npm run build:ssr
+      displayName: 'npm install and build'
+      workingDirectory: $(System.DefaultWorkingDirectory)/tinyweb-app
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/tinyweb-app/dist'
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
@@ -75,4 +73,4 @@ stages:
               appName: $(webAppName)
               runtimeStack: 'NODE|20LTS'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'
+              startUpCommand: 'npm run serve:ssr'
