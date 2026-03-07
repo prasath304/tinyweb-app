@@ -29,31 +29,18 @@ stages:
             displayName: 'Use Node.js $(node_version)'
 
           - script: |
-              npm ci
+              npm install -g @angular/cli
+              npm install
+            displayName: 'install dependencies'
+
+          - script: 
               npm run build:ssr
             workingDirectory: tinyweb-app
-            displayName: 'npm install & build (SSR)'
-          - publish: $(Build.ArtifactStagingDirectory)/$(appName).zip
-            artifact: drop
+            displayName: 'Build angular app'
 
-  - stage: Deploy
-    displayName: 'Deploy to Azure Web App'
-    dependsOn: Build
-    condition: succeeded()
-    jobs:
-      - job: DeployAngular
-        steps:
-        # Download the artifact published in Build stage
-        - task: DownloadPipelineArtifact@2
-          inputs:
-            artifactName: 'drop'
-            targetPath: '$(Pipeline.Workspace)/drop'
-
-        - task: AzureWebApp@1
-          inputs:
-              azureSubscription: 'AzureSubscription-Prod'
-              appType: 'webAppLinux'            # or webApp for Windows
-              appName: '$(appName)'
-              package: '$(Pipeline.Workspace)/drop'
-
-            
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: 'dist/tinyweb-app/browser'
+              artifactName: 'drop'
+              publishLocation: 'Container'
+            displayName: 'Publish build artifacts'
