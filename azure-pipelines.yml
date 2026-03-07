@@ -36,15 +36,16 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
+        cd tinyweb-app
         npm install
         npm run build:ssr
       displayName: 'npm install and build'
-      workingDirectory: '$(System.DefaultWorkingDirectory)/tinyweb-app'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/tinyweb-app/dist'
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
