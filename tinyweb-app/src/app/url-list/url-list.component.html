@@ -1,1 +1,10 @@
 <p>url-list works!</p>
+ <input type="text" [(ngModel)]="searchTerm" placeholder="Search URL">
+    <ul>
+     <li *ngFor="let urlLink of filteredLinks()">
+  {{ urlLink.shortUrl }} ({{ urlLink.clicks }} clicks)
+  <button (click)="copyToClipboard(urlLink.shortUrl)">Copy</button>
+  <button (click)="deleteUrl(urlLink.id)">Delete</button>
+</li>
+
+    </ul>

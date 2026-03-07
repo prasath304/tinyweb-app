@@ -1,1 +1,8 @@
 <p>url-form works!</p>
+ <form (ngSubmit)="submitUrl()">
+      <input type="text" [(ngModel)]="url" name="url" placeholder="Enter URL" required>
+      <label>
+        <input type="checkbox" [(ngModel)]="isPrivate" name="isPrivate"> Private
+      </label>
+      <button type="submit">Generate Short Link</button>
+    </form>
