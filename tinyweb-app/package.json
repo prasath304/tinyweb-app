@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:ssr": "ng build && ng run tinyweb-app:server",
-    "serve:ssr:tinyweb-app": "node dist/tinyweb-app/server.mjs",
+    "serve:ssr:tinyweb-app": "node dist/tinyweb-app/server/server.mjs",
     "build-staging": "ng build tinyweb-app --configuration staging",
     "build-prod": "ng build tinyweb-app --configuration production"
   },
