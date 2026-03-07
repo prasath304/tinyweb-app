@@ -39,6 +39,8 @@ stages:
           - script: npm run build-prod
             workingDirectory: tinyweb-app
             displayName: 'Build Angular app (production)'
+          - script: rm -rf $(Build.ArtifactStagingDirectory)/wwwroot/*
+            displayName: 'Clean wwwroot before copy'
          
 
           - task: PublishBuildArtifacts@1
@@ -47,6 +49,8 @@ stages:
               ArtifactName: 'drop'
               publishLocation: 'Container'
               
+ 
+
   - stage: Deploy
     displayName: 'Deploy to Azure Web App'
     dependsOn: Build
