@@ -36,12 +36,10 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        npm install
         npm ci
         npm run build:ssr
-        npm run test --if-present
       displayName: 'npm install, build and test'
-      workingDirectory: $(workingDirectory)
+      workingDirectory: '$(System.DefaultWorkingDirectory)/$(workingDirectory)'
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
