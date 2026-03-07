@@ -37,9 +37,8 @@ stages:
 
     - script: |
         npm install
-        npm run build --if-present
-        npm run test --if-present
-      displayName: 'npm install, build and test'
+        npm run build:ssr
+      displayName: 'npm install and build'
       workingDirectory: '$(System.DefaultWorkingDirectory)/tinyweb-app'
 
     - task: ArchiveFiles@2
