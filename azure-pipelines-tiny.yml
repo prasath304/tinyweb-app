@@ -9,7 +9,7 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'b09a9352-6204-4516-a004-e5117cf1b7a5'
+  azureSubscription: '25a84f9c-5548-4d69-a918-3a7b27938d19'
 
   # Web app name
   webAppName: 'tiny-webApp'
@@ -35,17 +35,14 @@ stages:
         versionSpec: '20.x'
       displayName: 'Install Node.js'
 
-    - script: |
-        npm ci
-        npm run build:ssr
-      displayName: 'npm install, build and test'
-      # run in the default working directory (repo root)
-      workingDirectory: '$(System.DefaultWorkingDirectory)'
+    - script: npm install && npm run build:ssr
+      displayName: 'npm install and build'
+      workingDirectory: $(System.DefaultWorkingDirectory)/tinyweb-app
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/tinyweb-app'
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
@@ -74,6 +71,6 @@ stages:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
               appName: $(webAppName)
-              runtimeStack: 'NODE|20-lts'
+              runtimeStack: 'NODE|20LTS'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'              workingDirectory: '$(System.DefaultWorkingDirectory)'
+              startUpCommand: 'node dist/tinyweb-app/server/main.server.mjs'

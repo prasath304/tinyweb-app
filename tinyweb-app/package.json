@@ -6,11 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-  "build:ssr": "ng build --configuration production",
-    "serve:ssr": "node dist/tinyweb-app/server/main.server.mjs", 
-  "test": "ng test",
-  "lint": "ng lint"
-
+    "build:ssr": "ng build --configuration production",
+    "serve:ssr": "node dist/tinyweb-app/server/main.server.mjs",
+    "test": "ng test",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
