@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-url-form',
-  imports: [FormsModule,CommonModule],
+  standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './url-form.component.html',
   styleUrl: './url-form.component.scss',
 })

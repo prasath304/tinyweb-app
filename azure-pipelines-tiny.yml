@@ -73,4 +73,4 @@ stages:
               appName: $(webAppName)
               runtimeStack: 'NODE|20LTS'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'node dist/tinyweb-app/server/main.server.mjs'
+              startUpCommand: 'npm ci --only=production && node dist/tinyweb-app/server/main.server.mjs'
