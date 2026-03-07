@@ -35,12 +35,9 @@ stages:
         versionSpec: '20.x'
       displayName: 'Install Node.js'
 
-    - script: |
-        cd tinyweb-app
-        npm install
-        npm run build:ssr
+    - script: npm install && npm run build:ssr
       displayName: 'npm install and build'
-      workingDirectory: '$(System.DefaultWorkingDirectory)'
+      workingDirectory: $(System.DefaultWorkingDirectory)/tinyweb-app
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
@@ -74,6 +71,6 @@ stages:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
               appName: $(webAppName)
-              runtimeStack: 'NODE|20-lts'
+              runtimeStack: 'NODE|20LTS'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               startUpCommand: 'npm run start'
