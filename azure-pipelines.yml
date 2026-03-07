@@ -13,7 +13,7 @@ pool:
 variables:
   node_version: '20.x'
   buildConfiguration: 'production'
-  angularProject: 'my-app'   # Replace with your Angular project name
+  angularProject: 'tinyweb-app'   # Replace with your Angular project name
 
 
 stages:
@@ -46,7 +46,11 @@ stages:
               PathtoPublish: 'tinyweb-app/dist/tinyweb-app/browser'
               ArtifactName: 'drop'
               publishLocation: 'Container'
-       
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: 'dist/tinyweb-app/server'
+              Contents: 'server.mjs'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot'
 
   - stage: Deploy
     displayName: 'Deploy to Azure Web App'
