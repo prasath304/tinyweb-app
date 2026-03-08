@@ -1,46 +1,34 @@
-# azure-pipelines.yml
-
 trigger:
   branches:
     include:
-      - main   # Run pipeline when code is pushed to main
+      - master
 
 pool:
-  vmImage: 'ubuntu-latest'   # Use Linux agent for Angular builds
-  # name: tinyweb-apppool
+  vmImage: 'ubuntu-latest'
 
+steps:
+# 1. Use Node.js (adjust version to match your Angular project)
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Use Node.js 20'
 
-variables:
-  node_version: '20.x'
-  buildConfiguration: 'production'
-  angularProject: 'tinyweb-app'   # Replace with your Angular project name
+# 2. Install dependencies in the correct folder
+- script: |
+    npm install
+  workingDirectory: tinyweb-app
+  displayName: 'Install npm packages'
 
+# 3. Build Angular app
+- script: |
+    npm run build  --configuration production
+  workingDirectory: tinyweb-app
+  displayName: 'Build Angular app'
 
-stages:
-  - stage: Build
-    displayName: 'Build Angular App'
-    jobs:
-      - job: BuildAngular
-        steps:
-        
-          - task: NodeTool@0
-            inputs:
-              versionSpec: $(node_version)
-            displayName: 'Use Node.js $(node_version)'
-
-          - script: |
-              npm install -g @angular/cli
-              npm install
-            displayName: 'install dependencies'
-
-          - script: 
-              npm run build:ssr
-            workingDirectory: tinyweb-app
-            displayName: 'Build angular app'
-
-          - task: PublishBuildArtifacts@1
-            inputs:
-              pathToPublish: 'dist/tinyweb-app/browser'
-              artifactName: 'drop'
-              publishLocation: 'Container'
-            displayName: 'Publish build artifacts'
+# 4. Publish build artifacts
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: 'tinyweb-app/dist/tinyweb-app/browser'
+    artifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish build artifacts'
