@@ -21,7 +21,7 @@ steps:
 
 # 3. Build Angular app
 - script: |
-    npm run build  --configuration production
+    npm run build -- --configuration production
   workingDirectory: tinyweb-app
   displayName: 'Build Angular app'
 
