@@ -5,7 +5,7 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
@@ -25,13 +25,6 @@ const angularApp = new AngularNodeAppEngine();
  * });
  * ```
  */
-const distFolder = join(process.cwd(), 'tinyweb-app/dist/tinyweb-app/browser');
-const indexHtml = 'index.html';
-
-app.get('*', (req, res) => {
-  res.render(indexHtml, { req });
-});
-
 
 /**
  * Serve static files from /browser

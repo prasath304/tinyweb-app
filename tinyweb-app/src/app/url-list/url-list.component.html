@@ -1,0 +1,32 @@
+
+<h3 class="subtitle">Public URLs</h3>
+<input type="text" [(ngModel)]="searchTerm" (ngModelChange)="filteredUrls()" 
+ placeholder="Search URLs..." class="search-box" name="searchTerm" />
+ @if(loading){
+<div  class="loader">
+  <div class="spinner"></div>
+  <p>Loading data...</p>
+</div>
+ }
+ @else {
+<div class="url-list">
+   @for (url of filteredUrls(); track $index) {
+   <div class="url-card">
+      <div class="url-info">
+         <a [href]="url.originalUrl" style="text-decoration: underline;" target="_blank">{{ url.shortCode }}</a>
+         @if (url.isPrivate) {
+         <div>🔒 </div>
+         } @else {
+         <p>{{ url.originalUrl }}</p>
+         }
+      </div>
+      <div class="url-actions">
+         <button class="copy" (click)="copyUrl(url)">Copy</button>
+         <p>{{ url.clickCount }} clicks</p>
+         <button class="delete" (click)="deleteUrl(url)">Delete</button>
+      </div>
+   </div>
+   }
+</div>
+ }
+ 

@@ -1,13 +1,20 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { importProvidersFrom } from '@angular/core';
 import { routes } from './app/app.routes';
+import { FormsModule } from '@angular/forms';
+import 'zone.js';  // Required by Angular
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient()
-  ]
-}).catch(err => console.error(err));
+    provideHttpClient(),
+    importProvidersFrom(FormsModule),
+    provideHttpClient(withFetch()),
+  ],
+
+});
+
+

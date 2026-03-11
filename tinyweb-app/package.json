@@ -6,11 +6,11 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "build:ssr": "ng build && ng run tinyweb-app:serve-ssr",
+    "serve:ssr": "node dist/tinyweb-app/server/main.server.mjs",
+    "build-prod": "ng build --configuration production --output-hashing=all",
     "test": "ng test",
-    "build:ssr": "ng build && ng run tinyweb-app:server",
-    "serve:ssr:tinyweb-app": "node dist/tinyweb-app/server/server.mjs",
-    "build-staging": "ng build tinyweb-app --configuration staging",
-    "build-prod": "ng build tinyweb-app --configuration production"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -27,9 +27,10 @@
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "zone.js": "^0.15.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^20.3.20",
     "@angular/build": "^20.3.19",
     "@angular/cli": "^20.3.19",
     "@angular/compiler-cli": "^20.3.17",

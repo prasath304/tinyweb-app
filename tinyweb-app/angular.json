@@ -13,9 +13,9 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
-      "architect": {       
+      "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/tinyweb-app",
             "index": "src/index.html",
@@ -36,7 +36,6 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
             }
@@ -55,7 +54,11 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true
             },
             "development": {
               "optimization": false,
@@ -78,7 +81,10 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "buildTarget": "tinyweb-app:build"
+          }
         },
         "test": {
           "builder": "@angular/build:karma",
@@ -90,9 +96,10 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/routes.json"
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -102,9 +109,6 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "b40e4327-2b62-4d57-a41e-573c80ce723e"
   },
   "schematics": {
     "@schematics/angular:component": {
@@ -131,5 +135,8 @@
     "@schematics/angular:resolver": {
       "typeSeparator": "."
     }
+  },
+  "cli": {
+    "analytics": "b91a10fa-6b6e-4fb6-b786-4bbaf6fd9117"
   }
 }

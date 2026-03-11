@@ -1,12 +1,31 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { UrlFormComponent } from './url-form/url-form.component';
+import { UrlListComponent } from './url-list/url-list.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { UrlModel } from './Model/Url.model';
+
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [UrlFormComponent, UrlListComponent,CommonModule,FormsModule,
+
+
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'tinyweb-app';
+  title = 'ShortLink App';
+   longUrl: string = '';
+  shortUrls: { link: string }[] = [];
+
+  urlList: UrlModel[] = [];
+
+  receiveUrls(urls: UrlModel[]) {
+    this.urlList = urls;
+  }
+ 
 }
